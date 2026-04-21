@@ -11,7 +11,7 @@ RUN npm install
 # Копируем исходники сервера
 COPY server/ .
 
-# ✅ Копируем shared (теперь доступен, так как контекст = корень)
+# ✅ Копируем shared
 COPY shared ./shared
 
 # Компилируем TypeScript
