@@ -1,21 +1,23 @@
 FROM node:20-alpine
 
-# Устанавливаем Chromium для Puppeteer
 RUN apk add --no-cache chromium
 
 WORKDIR /app
 
-# Копируем package.json и устанавливаем зависимости
-COPY package*.json ./
+# Копируем package.json из правильной папки
+COPY workers/pdf-worker/package*.json ./
+
 RUN npm install
 
-# Копируем исходники (для volume они перезапишутся)
-COPY src ./src
-COPY tsconfig.json ./
+# Копируем весь код воркера
+COPY workers/pdf-worker/ .
 
-# Указываем путь к Chromium
+# Копируем shared (находится в корне проекта)
+COPY shared ./shared
+
+RUN npm run build
+
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 
-# Запускаем через ts-node (для разработки с volume)
-CMD ["npm", "run", "dev"]
+CMD ["node", "dist/index.js"]
