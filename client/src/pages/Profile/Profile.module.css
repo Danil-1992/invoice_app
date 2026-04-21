@@ -1,0 +1,141 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+
+.empty {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.invoicesList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.invoiceCard {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.invoiceHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.clientInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.clientName {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status.draft { background: #f0f0f0; color: #666; }
+.status.pending { background: #fff3cd; color: #856404; }
+.status.processing { background: #cce5ff; color: #004085; }
+.status.completed { background: #d4edda; color: #155724; }
+.status.failed { background: #f8d7da; color: #721c24; }
+.status.paid { background: #d4edda; color: #155724; }
+
+.total {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.itemsTable {
+  margin-bottom: 16px;
+}
+
+.itemsHeader {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 16px;
+  padding: 8px 0;
+  font-weight: 600;
+  color: #666;
+  border-bottom: 1px solid #eee;
+}
+
+.itemRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 16px;
+  padding: 8px 0;
+}
+
+.invoiceFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+}
+
+.createdAt {
+  font-size: 12px;
+  color: #999;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+.generateBtn, .downloadBtn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.generateBtn {
+  background: #6366f1;
+  color: white;
+}
+
+.generateBtn:hover:not(:disabled) {
+  background: #4f46e5;
+}
+
+.generateBtn:disabled {
+  background: #a5a5a5;
+  cursor: not-allowed;
+}
+
+.downloadBtn {
+  background: #10b981;
+  color: white;
+}
+
+.downloadBtn:hover {
+  background: #059669;
+}

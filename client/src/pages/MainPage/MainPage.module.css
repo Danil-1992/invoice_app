@@ -1,0 +1,95 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: sans-serif;
+  color: #1a1a1a;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 24px;
+}
+
+.primaryButton {
+  padding: 12px 24px;
+  font-size: 16px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.primaryButton:hover {
+  opacity: 0.85;
+}
+
+/* FEATURES */
+.features {
+  margin-bottom: 50px;
+}
+
+.features h2 {
+  margin-bottom: 16px;
+}
+
+.features ul {
+  list-style: none;
+  padding: 0;
+}
+
+.features li {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+/* INFO */
+.info {
+  margin-bottom: 50px;
+}
+
+.info h2 {
+  margin-bottom: 10px;
+}
+
+.info p {
+  color: #555;
+  font-size: 16px;
+}
+
+/* CTA */
+.cta {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.secondaryButton {
+  margin-top: 16px;
+  padding: 12px 24px;
+  font-size: 16px;
+  background: transparent;
+  border: 2px solid black;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.secondaryButton:hover {
+  background: black;
+  color: white;
+}

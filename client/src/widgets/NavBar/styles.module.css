@@ -1,0 +1,64 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  height: 60px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eaeaea;
+  font-family: sans-serif;
+}
+
+/* ЛОГО */
+.logo {
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ЦЕНТР */
+.center {
+  flex: 1;
+  text-align: center;
+}
+
+.greet {
+  font-size: 14px;
+  color: #555;
+}
+
+/* ПРАВАЯ ЧАСТЬ */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* КНОПКА КАК ЛИНК */
+.linkBtn {
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  color: #333;
+  transition: 0.2s;
+}
+
+.linkBtn:hover {
+  color: black;
+}
+
+/* КНОПКА ВЫХОДА */
+.logoutBtn {
+  padding: 8px 14px;
+  background: #111;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.logoutBtn:hover {
+  opacity: 0.85;
+}
