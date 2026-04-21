@@ -1,0 +1,132 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres
+    environment:
+      POSTGRES_USER: invoice_user
+      POSTGRES_PASSWORD: invoice_password
+      POSTGRES_DB: invoice_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - invoice_network
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    volumes:
+      - redis_data:/data
+    networks:
+      - invoice_network
+    restart: unless-stopped
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - invoice_network
+    restart: unless-stopped
+
+  minio:
+    image: minio/minio
+    container_name: minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    volumes:
+      - minio_data:/data
+    networks:
+      - invoice_network
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    restart: unless-stopped
+
+  backend:
+    build: ./server
+    container_name: backend
+    depends_on:
+      - postgres
+      - redis
+      - rabbitmq
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: invoice_user
+      POSTGRES_PASSWORD: invoice_password
+      POSTGRES_DB: invoice_db
+      REDIS_HOST: redis
+      RABBITMQ_HOST: rabbitmq
+      AWS_ENDPOINT: http://minio:9000
+      AWS_ACCESS_KEY_ID: minioadmin
+      AWS_SECRET_ACCESS_KEY: minioadmin
+      AWS_REGION: us-east-1
+      S3_BUCKET_NAME: invoices
+    ports:
+      - "3001:3000"
+    networks:
+      - invoice_network
+    restart: unless-stopped
+
+  frontend:
+    build: ./client
+    container_name: frontend
+    environment:
+      REACT_APP_API_URL: http://backend:3001
+    ports:
+      - "3002:3000"
+    networks:
+      - invoice_network
+    restart: unless-stopped
+
+  pdf-worker:
+    build: ./workers/pdf-worker
+    container_name: pdf-worker
+    depends_on:
+      - rabbitmq
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      AWS_ENDPOINT: http://minio:9000
+      AWS_ACCESS_KEY_ID: minioadmin
+      AWS_SECRET_ACCESS_KEY: minioadmin
+      AWS_REGION: us-east-1
+      S3_BUCKET_NAME: invoices
+      PUPPETEER_EXECUTABLE_PATH: /usr/bin/chromium-browser
+      PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
+    networks:
+      - invoice_network
+    restart: unless-stopped
+
+  invoice-worker:
+    build: ./workers/invoice-worker
+    container_name: invoice-worker
+    depends_on:
+      - postgres
+      - rabbitmq
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: invoice_user
+      POSTGRES_PASSWORD: invoice_password
+      POSTGRES_DB: invoice_db
+      RABBITMQ_HOST: rabbitmq
+    networks:
+      - invoice_network
+    restart: unless-stopped
+
+networks:
+  invoice_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:
+  rabbitmq_data:
+  minio_data:
