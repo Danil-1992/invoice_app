@@ -1,15 +1,20 @@
-# workers/invoice-worker/Dockerfile
-FROM node:18-alpine
+FROM node:20-alpine
+
+RUN apk add --no-cache chromium
 
 WORKDIR /app
 
 COPY package*.json ./
 RUN npm install
 
-# Создаем симлинк на shared
-RUN mkdir -p src && ln -sf ../shared src/shared
+COPY . .
 
-COPY src ./src
-COPY shared ./shared
+# Копируем shared из родительской папки
+COPY ../shared ./shared
 
-CMD ["npm", "run", "dev"]
+RUN npm run build
+
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+
+CMD ["node", "dist/index.js"]
