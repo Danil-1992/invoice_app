@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "commonjs",
+    "lib": ["ES2022"],
+    "outDir": "./dist",
+    // "rootDir": "./src",     // 👈 УДАЛИ или закомментируй
+    "strict": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "allowJs": false,
+    "checkJs": false
+  },
+  "include": [
+    "src/**/*", 
+    "../../shared/**/*"      // 👈 ДОБАВЬ shared
+  ],
+  "exclude": ["node_modules", "dist"]
+}

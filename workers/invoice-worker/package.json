@@ -1,0 +1,23 @@
+{
+  "name": "invoice-updater",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "amqplib": "^0.10.3",
+    "dotenv": "^16.0.0",
+    "pg": "^8.11.0",
+    "sequelize": "^6.35.0",
+    "socket.io-client": "^4.8.3"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.10.5",
+    "@types/node": "^20.0.0",
+    "@types/sequelize": "^4.28.20",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  }
+}

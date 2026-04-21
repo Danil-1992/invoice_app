@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Инвойс {{invoice.id}}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Helvetica', Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.4;
+            color: #333;
+            padding: 40px;
+            background: #f0f2f5;
+        }
+        .invoice-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .invoice-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+        }
+        .invoice-header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .invoice-header .status {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+        .invoice-body {
+            padding: 30px;
+        }
+        .info-section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f2f5;
+        }
+        .info-box {
+            flex: 1;
+        }
+        .info-box h3 {
+            color: #667eea;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .info-box p {
+            margin: 5px 0;
+            color: #555;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .text-right {
+            text-align: right;
+        }
+        .total-section {
+            margin-top: 20px;
+            text-align: right;
+            padding-top: 20px;
+            border-top: 2px solid #f0f2f5;
+        }
+        .total-label {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        .total-amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+            margin-left: 20px;
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 20px 30px;
+            text-align: center;
+            font-size: 12px;
+            color: #6c757d;
+        }
+        .badge {
+            background: #28a745;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice-box">
+        <div class="invoice-header">
+            <h1>ИНВОЙС #{{invoice.id}}</h1>
+            <div class="status">Статус: {{invoice.status}}</div>
+            <p style="margin-top: 15px;">Дата создания: {{formatDate invoice.createdAt}}</p>
+        </div>
+
+        <div class="invoice-body">
+            <div class="info-section">
+                <div class="info-box">
+                    <h3>Клиент</h3>
+                    <p><strong>{{invoice.client_name}}</strong></p>
+                    <p>ID клиента: {{invoice.user_id}}</p>
+                </div>
+                <div class="info-box">
+                    <h3>Детали</h3>
+                    <p>Номер инвойса: #{{invoice.id}}</p>
+                    <p>Дата: {{formatDate invoice.createdAt}}</p>
+                </div>
+            </div>
+
+            <h3 style="margin: 20px 0 10px 0;">Позиции</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Наименование</th>
+                        <th class="text-right">Кол-во</th>
+                        <th class="text-right">Цена</th>
+                        <th class="text-right">Сумма</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each invoiceItems}}
+                    <tr>
+                        <td>{{this.name}}</td>
+                        <td class="text-right">{{this.quantity}}</td>
+                        <td class="text-right">{{this.price}} ₽</td>
+                        <td class="text-right"><strong>{{this.total}} ₽</strong></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+
+            <div class="total-section">
+                <span class="total-label">ИТОГО К ОПЛАТЕ:</span>
+                <span class="total-amount">{{invoice.total}} ₽</span>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Спасибо за сотрудничество!</p>
+            <p>Оплата производится по безналичному расчету</p>
+        </div>
+    </div>
+</body>
+</html>
