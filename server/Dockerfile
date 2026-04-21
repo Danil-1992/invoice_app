@@ -2,19 +2,17 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# Копируем package.json из папки server
-COPY server/package*.json ./
+# Копируем package.json (теперь из текущей папки, так как контекст — ./server)
+COPY package*.json ./
 
-# Устанавливаем зависимости
 RUN npm install
 
-# Копируем исходники сервера
-COPY server/ .
+# Копируем всё содержимое папки server
+COPY . .
 
-# ✅ Копируем shared
-COPY shared ./shared
+# Копируем shared (поднимаемся на уровень выше)
+COPY ../shared ./shared
 
-# Компилируем TypeScript
 RUN npm run build
 
 EXPOSE 3000
