@@ -16,7 +16,7 @@ const server = http.createServer(app);
 createSocketServer(server);
 
 const corsOption = {
-  origin: "http://localhost:3002",
+  origin: ["http://localhost:3002", "http://178.72.128.215:3002"],
   credentials: true,
   methods: ["GET", "POST", "DELETE", "PATCH", "PUT"],
   allowedHeaders: ["Content-Type", "Authorization"],
