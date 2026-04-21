@@ -72,6 +72,8 @@ services:
       AWS_SECRET_ACCESS_KEY: minioadmin
       AWS_REGION: us-east-1
       S3_BUCKET_NAME: invoices
+      ACCESS_TOKEN_SECRET: hgjkrdhgjkbdfnjkvbgkdjhgbkjvdfvngmdbnv
+      REFRESH_TOKEN_SECRET: jhfjdsgbvjnfdhjgbhfdsjbvkhjfvbkj
     ports:
       - "3001:3000"
     networks:
