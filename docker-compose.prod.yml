@@ -82,7 +82,7 @@ services:
     build: ./client
     container_name: frontend
     environment:
-      REACT_APP_API_URL: http://backend:3001
+      REACT_APP_API_URL: http://178.72.128.215:3001
     ports:
       - "3002:3000"
     networks:
