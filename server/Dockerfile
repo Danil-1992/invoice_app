@@ -2,16 +2,10 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# Копируем package.json (теперь из текущей папки, так как контекст — ./server)
-COPY package*.json ./
-
+COPY server/package*.json ./
 RUN npm install
 
-# Копируем всё содержимое папки server
-COPY . .
-
-# Копируем shared (поднимаемся на уровень выше)
-COPY ../shared ./shared
+COPY server/ .
 
 RUN npm run build
 

@@ -11,7 +11,7 @@ module.exports = {
       },
       userName: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
         defaultValue: "User",
       },
       email: {
