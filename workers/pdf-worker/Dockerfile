@@ -4,10 +4,10 @@ RUN apk add --no-cache chromium
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY workers/pdf-worker/package*.json ./
 RUN npm install
 
-COPY . .
+COPY workers/pdf-worker/ .
 COPY shared ./shared
 
 RUN npm run build
