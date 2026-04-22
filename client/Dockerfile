@@ -5,10 +5,10 @@ ENV REACT_APP_API_URL=$REACT_APP_API_URL
 
 WORKDIR /app
 
-COPY client/package*.json ./
+COPY package*.json ./
 RUN npm install
 
-COPY client/ .
+COPY . .
 
 RUN npm run build
 
