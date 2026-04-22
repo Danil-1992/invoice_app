@@ -1,4 +1,3 @@
-cat > client/Dockerfile << 'EOF'
 FROM node:20-alpine
 
 ARG REACT_APP_API_URL
@@ -16,4 +15,3 @@ RUN npm run build
 EXPOSE 3000
 
 CMD ["npm", "start"]
-EOF

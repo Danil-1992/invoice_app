@@ -1,4 +1,3 @@
-cat > workers/invoice-worker/Dockerfile << 'EOF'
 FROM node:18-alpine
 
 WORKDIR /app
@@ -12,4 +11,3 @@ COPY shared ./shared
 RUN npm run build
 
 CMD ["node", "dist/index.js"]
-EOF
