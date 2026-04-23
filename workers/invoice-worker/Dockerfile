@@ -7,13 +7,12 @@ RUN npm install
 
 # ✅ Устанавливаем TypeScript глобально
 RUN npm install -g typescript
-RUN npm install dotenv
 
 COPY . .
 
-# ✅ Копируем shared и компилируем его в JS (игнорируем tsconfig)
+# ✅ Копируем shared и компилируем всю папку database в JS
 COPY shared ./shared
-RUN cd shared/database && tsc index.ts --outDir . --module commonjs --target es2020 --ignoreConfig
+RUN cd shared/database && tsc --module commonjs --target es2020 --esModuleInterop --allowJs --skipLibCheck
 
 RUN npm run build
 
