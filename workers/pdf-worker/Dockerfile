@@ -4,11 +4,13 @@ RUN apk add --no-cache chromium
 
 WORKDIR /app
 
-COPY workers/pdf-worker/package*.json ./
+COPY package*.json ./
 RUN npm install
 
-COPY workers/pdf-worker/ .
-COPY shared ./shared
+COPY . .
+
+# ✅ Копируем шаблоны в dist
+COPY src/templates /app/dist/templates
 
 RUN npm run build
 
