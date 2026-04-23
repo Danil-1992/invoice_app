@@ -7,8 +7,9 @@ RUN npm install
 
 COPY . .
 
-# ✅ Копируем shared из корня проекта в папку src (где его ищет код)
-COPY shared ./src/shared
+# ✅ Копируем shared и компилируем его
+COPY shared ./shared
+RUN cd shared/database && npx tsc index.ts --outDir . --module commonjs || true
 
 RUN npm run build
 
