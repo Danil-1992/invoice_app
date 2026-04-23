@@ -6,11 +6,12 @@ let socket: any = null;
 export function connectSocket() {
   if (!socket) {
     const socketUrl = process.env.REACT_APP_API_URL || "http://localhost:3001";
+    console.log("Socket connecting to:", socketUrl);
     socket = io(socketUrl, {
       transports: ["websocket"],
       withCredentials: true,
     });
-
+    console.log("Socket connecting to:", socketUrl);
     socket.on("connect", () => {
       console.log("✅ Socket connected");
     });
