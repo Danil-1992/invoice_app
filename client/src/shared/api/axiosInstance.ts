@@ -22,6 +22,7 @@ type CustomAxiosRequestConfig = {
 
 axiosInstance.interceptors.request.use((config) => {
   config.headers.Authorization ??= `Bearer ${accessToken}`;
+  console.log(accessToken);
   return config;
 });
 
@@ -35,6 +36,7 @@ axiosInstance.interceptors.response.use(
         await axiosInstance.get("/auth/refresh");
       setAccessToken(response.data.accessToken);
       prev.headers.Authorization = `Bearer ${accessToken}`;
+      console.log(accessToken);
       return axiosInstance(prev);
     }
     return Promise.reject(error);

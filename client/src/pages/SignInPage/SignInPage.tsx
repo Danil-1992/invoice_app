@@ -7,7 +7,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignInPage(): React.JSX.Element {
   const {
