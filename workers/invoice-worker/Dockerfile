@@ -10,4 +10,7 @@ COPY shared ./shared
 
 RUN npm run build
 
+# ✅ Копируем shared в dist после сборки
+RUN cp -r shared dist/ 2>/dev/null || true
+
 CMD ["node", "dist/index.js"]
