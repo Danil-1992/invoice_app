@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2020",
+    "esModuleInterop": true,
+    "outDir": "./dist",
+    "skipLibCheck": true
+  },
+  "include": ["*.ts", "models/*.ts"]
+}
