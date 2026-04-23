@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import RabbitInit from "./configs/rabbit.config";
 // const db = require("/app/shared/database");
-const db = require("../../shared/database");
+const db = require("../shared/database")
 const Invoice = db.Invoice;
 
 dotenv.config();
