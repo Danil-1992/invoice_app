@@ -5,17 +5,10 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 
-# ✅ Устанавливаем TypeScript глобально
-RUN npm install -g typescript
-
 COPY . .
 
-# ✅ Копируем shared и компилируем его во временную папку
+# ✅ Копируем уже скомпилированный shared
 COPY shared ./shared
-RUN cd shared/database && tsc index.ts --outDir ./compiled --module commonjs --target es2020 --esModuleInterop --skipLibCheck
-
-# ✅ Заменяем исходные файлы скомпилированными
-RUN cp shared/database/compiled/* shared/database/ -r
 
 RUN npm run build
 
