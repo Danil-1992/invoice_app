@@ -5,7 +5,8 @@ let socket: any = null;
 
 export function connectSocket() {
   if (!socket) {
-    socket = io("http://localhost:3001", {
+    const socketUrl = process.env.REACT_APP_API_URL || "http://localhost:3001";
+    socket = io(socketUrl, {
       transports: ["websocket"],
       withCredentials: true,
     });
