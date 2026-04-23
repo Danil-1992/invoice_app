@@ -65,7 +65,7 @@ async function pdfWorker() {
         // console.log("📊 Полные данные:", JSON.stringify(pdfData, null, 2));
         // 1. Генерируем PDF
         const pdfBuffer = await generateInvoicePDF(pdfData);
-
+        console.log("PDF Buffer size:", pdfBuffer.length);
         // 2. Загружаем в MinIO
         const fileName = `invoice_${content.invoice.id}.pdf`;
 

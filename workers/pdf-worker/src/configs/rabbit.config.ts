@@ -9,7 +9,7 @@ class RabbitInit {
       return this.connections.get(serviceName);
     }
 
-    const rabbitmqHost = process.env.RABBITMQ_HOST || 'localhost';
+    const rabbitmqHost = process.env.RABBITMQ_HOST || 'rabbitmq';
     const rabbitmqPort = process.env.RABBITMQ_PORT || 5672;
     const rabbitmqUrl = `amqp://${rabbitmqHost}:${rabbitmqPort}`;
 
