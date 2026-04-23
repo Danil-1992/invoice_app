@@ -5,11 +5,13 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 
+# ✅ Устанавливаем dotenv
+RUN npm install dotenv
+
 COPY . .
 
-# ✅ Копируем shared и компилируем его
+# ✅ Копируем shared
 COPY shared ./shared
-RUN cd shared/database && npx tsc index.ts --outDir . --module commonjs || true
 
 RUN npm run build
 
