@@ -2,13 +2,10 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-COPY workers/invoice-worker/package*.json ./
+COPY package*.json ./
 RUN npm install
 
-COPY workers/invoice-worker/ .
-
-# ✅ Копируем shared из корня проекта (контекст сборки — корень)
-COPY shared ./shared
+COPY . .
 
 RUN npm run build
 

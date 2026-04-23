@@ -93,9 +93,7 @@ services:
     restart: unless-stopped
 
   invoice-worker:
-    build:
-      context: .
-      dockerfile: workers/invoice-worker/Dockerfile
+    build: ./workers/invoice-worker
     container_name: invoice-worker
     depends_on:
       - postgres
